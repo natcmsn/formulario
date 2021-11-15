@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    /*text-align: center;*/
+    font-family: 'Roboto Condensed';
+}
+
+.container{
+    width: 100%;
+    height: 100vh;  /*viewport height, en %*/
+    /*background-image: url(../img/NYCViews.jpg);
+    background-color: linear-gradient(rgba(0,0,0,0.8), rgba(0, 0, 0, .7)); Hay que ponerlos juntos para que las dos se vean.
+    background-position: center;
+    background-repeat: no-repeat;*/
+    background: linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .7)), url(../img/NYCViews.jpg) center no-repeat;
+    background-size: cover;
+}
+
+.banner{
+    color: #fff;
+    width: 750px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-heading{
+    font-size: 80px;
+    text-transform: uppercase;  /*Es una minúscula que se visualiza como mayúscula*/
+    margin-bottom: 80px;
+    border-top: 7px solid #fff;
+    border-bottom: 7px solid #fff;
+}
+
+.arrow{
+    font-size: 50px;
+    margin-bottom: 30px;
+    animation: anim 3s infinite;
+}
+
+.banner-btn{
+    width: 200px;
+    padding: 15px;
+    font-size: 17px;
+    text-transform: uppercase;  
+    letter-spacing: 1px;
+    background: transparent;
+    color: #fff;
+    border-radius: 50px;
+    border: 2px solid #fff;
+    outline: none;  /*Como un visel*/
+    cursor: pointer;
+    transition: transform .3s;
+}
+
+.banner-btn:hover{
+    transform: translateY(-10px);
+}
+
+@keyframes anim {   /*Animación de flecha arriba y abajo*/
+	0% {transform: translateY(0);}
+	20% {transform: translateY(0);}
+	40% {transform: translateY(-30px);}
+	50% {transform: translateY(0);}
+	60% {transform: translateY(-15px);}
+	80% {transform: translateY(0);}
+	100% {transform: translateY(0);}
+}
+
+.form-container{
+    display: flex;
+    width: 800px;
+    height: 600px;
+    position: absolute;
+    top: 50%;
+    left: 50%;   /*Tenemos un div encima de otro*/
+    transform: translate(-50%, -50%);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .4);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s;
+}
+
+.sign-up-form{
+    width: 50%;
+    background-color: #232328;
+    padding: 120px 50px;
+    box-sizing: border-box; /*Hace que cualquier objeto que esté al lado quede inmendiatamente pegado a él. Así nos aseguramos que solo ocupa lo que le decimos.*/
+    color: #fff;
+    letter-spacing: 1px;
+    font-weight: 200;
+}
+
+/*Elementos del formulario*/
+
+.form-input{
+    width: 300px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: #cc683c;
+    background-color: transparent; /*Los inputs por defecto tienen fondo y borde opaco.*/
+    border: none;
+    border-bottom: 2px solid #fff;
+    margin-bottom: 50px;
+    outline: none;
+    padding: 10px 0;
+    transition: border-bottom-color .8s;  /*Creamos transición que es lanzada por un disparador. .8s es el tiempo que va a tardar en el cambio de color que le mandamos a continuación.*/
+}
+
+.form-input:focus{  /*Cuando nos pongamos encima del input el borde del color */
+    border-bottom-color: #cc683c;
+}
+
+.sign-up-form p { /*Se puede poner el color, font-weight, letter-spacing en .sign-up-form y estos hijos lo heredarán.*/
+    font-size: 18px;
+    /*color: #fff;
+    letter-spacing: 1px;
+    font-weight: 200;*/
+    margin-bottom: 8px;
+}
+
+.sign-up-form label {
+	font-size: 15px;
+    /*color: #fff;
+	letter-spacing: 1px;
+	font-weight: 200;*/
+	text-transform: uppercase;
+}
+
+.sign-up-form input[type="checkbox"] { /*Se le especifica que sólo se aplique a los checkbox solo. El checkbox es exluyente, solo se puede usar una opción u otra.*/
+    position: relative;
+	-webkit-appearance: none; /*Para derivados de Chrome*/
+	-moz-appearance: none; /*Para mozilla y derivados, para desacernos de los elementos de estilo que añaden estos navegadores*/
+	appearance: none; /*Algunas veces la misma característica se enumera varias veces (de forma más específica) para asegurarse que lo entiendan distintos navegadores (es lo que sucede antes).*/
+    height: 15px;
+    width: 30px;   /*Porque tengo un input al lado del otro aunque no se vea*/
+
+    background-color: #eee;
+    outline: none;
+    border-radius: 20px;
+    margin: 0 8px;
+    cursor: pointer;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, .4);
+    transition: background-color .5s;
+}
+
+.sign-up-form input:checked[type="checkbox"] {
+    background-color: #cc683c;
+}
+
+.sign-up-form input[type="checkbox"]::before { /*::before  es una pseudoclase que indica qué tiene que hacer antes de representar .sign-up-form input. Vamos a crear un contenido (circulo) del antes del checkbox*/
+	content: ''; /*Para que no aparezca ningún artefacto del navegador.*/
+	width: 17px;
+	height: 17px;
+	background-color: #aaa;
+	position: absolute;
+	border-radius: 50%; /*refondo*/
+	top: -1px;
+	left: -4px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, .4);  
+	transition: left .5s;
+}
+
+
+.sign-up-form input:checked[type="checkbox"]::before {
+	left: 18px;  /*Que se desplace a la izda 18px*/
+}
+
+.sign-up-form button {
+	display: block;
+	margin-top: 80px;
+    width: 150px;
+	padding: 8px 5px;
+	background-color: transparent;
+	color: #fff;   /*También vale color: inherit;*/
+    border: 2px solid #fff;
+	border-radius: 50px;
+    /*outline: none;*/
+	font-family: 'Roboto Condensed', sans-serif; /*También vale font-family: inherit;*/
+	font-size: 15px;
+	letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.header {
+	width: 50%;
+	background: linear-gradient(to top, rgba(0, 0, 0, .6), rgba(0, 0, 0, .4)), url(../img/NYCViews.jpg) center no-repeat;
+	background-size: cover;
+	box-shadow: -10px 0 30px rgba(0, 0, 0, .3);
+	position: relative;
+}
+
+.header h1 {
+	position: absolute;
+	top: 15%;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+	color: #fff;
+	font-family: 'Oswald', sans-serif;
+	font-size: 40px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.x-btn {
+	position: absolute;
+	bottom: -6%;  /*Respecto al contenedor de referencia, que es el padre.*/
+	right: 1%;
+	font-size: 23px;
+	font-weight: bold;
+	color: #262626;
+	cursor: pointer;
+}
+
+
+@media (max-width: 850px){
+    .form-container{
+        width: 600px;
+        height: 400px;
+    }
+
+    .sign-up-form{
+        padding: 50px 30px;
+    }
+
+    .form-input{
+        width: 200px;
+        font-size: 14px;
+        margin-bottom: 30px;
+        padding: 7px 0;
+    }
+
+    .sign-up-form p {
+        font-size: 15px;
+    }
+
+    .sign-up-form label {
+        font-size: 13px;
+    }
+
+    .sign-up-form input[type="checkbox"] {
+        width: 25px;
+        height: 12px;
+    }
+
+    .sign-up-form input[type="checkbox"] ::before {
+        width: 14px;
+        height: 14px;
+    }
+
+    .sign-up-form button {
+        margin-top: 50px;
+        width: 120px;
+        padding: 6px 4px;
+        font-size: 13px;
+        border-width: 1px;
+    }
+
+    .header h1 {
+        font-size: 30px;  /*Prescindible porque columna desaparece*/
+    }
+
+}
+
+@media(max-width: 800px) {
+    .banner {
+        width: 450px;
+    }
+
+    .banner-heading {
+        font-size: 60px;
+        margin-bottom: 40px;
+        border-width: 4px;
+    }
+
+    .arrow {
+        font-size: 30px;
+    }
+
+    .banner-btn {
+        width: 150px;
+        padding: 10px;
+        font-size:  15px;
+    }
+}
+
+@media(max-width: 650px) {
+    .header {
+		display: none;
+	}
+
+	.form-container {
+		width: 300px;
+	}
+
+	.sign-up-form {
+		width: 100%;
+	}
+}
+
+@media (max-width: 500px) {
+	.banner {
+		width: 300px;
+	}
+
+	.banner-heading {
+		font-size: 40px;
+	}
+}
